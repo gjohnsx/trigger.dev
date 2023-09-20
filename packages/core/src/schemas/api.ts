@@ -435,6 +435,13 @@ export const RunJobErrorSchema = z.object({
 
 export type RunJobError = z.infer<typeof RunJobErrorSchema>;
 
+export const RunJobUnresolvedAuthErrorSchema = z.object({
+  status: z.literal("UNRESOLVED_AUTH_ERROR"),
+  issues: z.record(z.object({ id: z.string(), error: z.string() })),
+});
+
+export type RunJobUnresolvedAuthError = z.infer<typeof RunJobUnresolvedAuthErrorSchema>;
+
 export const RunJobResumeWithTaskSchema = z.object({
   status: z.literal("RESUME_WITH_TASK"),
   task: TaskSchema,
@@ -467,6 +474,7 @@ export type RunJobSuccess = z.infer<typeof RunJobSuccessSchema>;
 
 export const RunJobResponseSchema = z.discriminatedUnion("status", [
   RunJobErrorSchema,
+  RunJobUnresolvedAuthErrorSchema,
   RunJobResumeWithTaskSchema,
   RunJobRetryWithTaskSchema,
   RunJobCanceledWithTaskSchema,
@@ -691,7 +699,7 @@ const RegisterCommonScheduleBodySchema = z.object({
   id: z.string(),
   /** Any additional metadata about the schedule. */
   metadata: z.any(),
-  /** This will be used by the Trigger.dev Connect feature, which is coming soon. */
+  /** An optional Account ID to associate with runs triggered by this schedule */
   accountId: z.string().optional(),
 });
 
