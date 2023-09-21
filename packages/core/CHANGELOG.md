@@ -1,5 +1,11 @@
 # internal-platform
 
+## 2.1.4
+
+### Patch Changes
+
+- ad14983e: You can create statuses in your Jobs that can then be read using React hooks
+
 ## 2.1.3
 
 ## 2.1.2

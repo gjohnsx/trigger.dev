@@ -1,5 +1,13 @@
 # @trigger.dev/resend
 
+## 2.1.4
+
+### Patch Changes
+
+- Updated dependencies [ad14983e]
+  - @trigger.dev/sdk@2.1.4
+  - @trigger.dev/integration-kit@2.1.4
+
 ## 2.1.3
 
 ### Patch Changes
